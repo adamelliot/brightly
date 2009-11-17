@@ -5,7 +5,7 @@ require 'uv'
 module Brightly
   module Provider
     class Base < Sinatra::Base
-      enable :logging
+      enable :logging, :static
       set :root, File.dirname(__FILE__)
       
       configure :development do

@@ -13,13 +13,14 @@ module Brightly
       end
     end
     
-    module ActiveRecordHelper
+    module ProviderHelper
       def brighten(markdown, theme = Brightly::Consumer.theme)
-        Net::HTTP.post_form(URI.parse("#{Brightly::Consumer.provider_url}/brighten"), {:markdown => markdown, :theme => theme})
+        Net::HTTP.post_form(URI.parse("#{Brightly::Consumer.provider_url}/brighten"), {:markdown => markdown, :theme => theme}).body
       end
     end
   end
 end
 
 ::ActionView::Base.send(:include, Brightly::Consumer::AssetHelper) if defined? ::ActionView::Base
-::ActiveRecord::Base.send(:include, Brightly::Consumer::ActiveRecordHelper) if defined? ::ActiveRecord::Base
+::ActiveRecord::Base.send(:include, Brightly::Consumer::ProviderHelper) if defined? ::ActiveRecord::Base
+::ActionController::Base.send(:include, Brightly::Consumer::ProviderHelper) if defined? ::ActionController::Base
