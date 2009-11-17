@@ -33,6 +33,24 @@ Ubuntu Installation:
 Brightly:
 
   sudo gem install brightly --source=http://gemcutter.org
+
+
+For development you can easily run brightly via the command line:
+
+  brightly
+
+Will start a Sinatra server going.
+
+To get things running with a webserver (passenger + apache, etc) using rack set your config up like:
+
+config.ru:
+  begin
+    require 'brightly'
+  rescue
+    require 'rubygems'
+    require 'brightly'
+  end
+  run Brightly::Provider::Base
   
 == Client Usage
 
