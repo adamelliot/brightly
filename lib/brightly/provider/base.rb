@@ -20,6 +20,7 @@ module Brightly
       private
         def process_markdown(markdown, theme)
           output = ""
+          embeds = ""
           
           while !(open = markdown.index(/<code [^>]*language=/m, 0)).nil?
             output << markdown[0, open]
@@ -35,16 +36,25 @@ module Brightly
             close = markdown.index(">", close) + 1
 
             language = markdown[/<code [^>]*language\s*=\s*(['"])([^\1]*?)\1[^>]*>/m, 2]
-            output << Uv.parse(markdown[inner_open, inner_close - inner_open], "xhtml", language, false, theme)
+            embed = markdown[/<code [^>]*embed\s*=\s*(['"])([^\1]*?)\1[^>]*>/m, 2]
+
+            code = markdown[inner_open, inner_close - inner_open]
+
+            output << Uv.parse(code, "xhtml", language, false, theme)
+            embeds << embed_code(code, language) unless embed.nil?
             markdown = markdown[close, markdown.length]
           end
 
           output << markdown
 
-          RDiscount.new(output).to_html
+          embeds + RDiscount.new(output).to_html
         end
-        
+
         def embed_code(code, type)
+          case type
+          when "javascript" then "<script type=\"text/javascript\">#{code}</script>\n"
+          when "css"        then "<style>#{code}</style>\n"
+          end
         end
     end
   end
