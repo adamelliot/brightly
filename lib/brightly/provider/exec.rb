@@ -2,7 +2,7 @@ require 'rubygems'
 require 'optparse'
 
 module Brightly
-  module Server
+  module Provider
     class Exec
       def initialize(argv)
         options = {}
@@ -18,7 +18,7 @@ module Brightly
           opts.on_tail('-h', '--help', "Show this message") { puts opts ; exit }
         end
 
-        Brightly::Server::Base.run! options
+        Brightly::Provider::Base.run! options
       end
     end
   end
