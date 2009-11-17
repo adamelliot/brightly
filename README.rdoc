@@ -8,20 +8,63 @@ There is a wonderful gem that lets you syntax highlight based on TextMate sytle'
 
 == Server Setup
 
+You'll need Onigurma to use ultraviolet which is used do do the highlighting in Brightly (hence the whole reason for the service).
+
+Website: http://www.geocities.jp/kosako3/oniguruma/
+
+OS X Installation (from source):
+
+  curl -O http://www.geocities.jp/kosako3/oniguruma/archive/onig-5.9.1.tar.gz
+  tar xvf onig-5.9.1.tar.gz
+  cd onig-5.9.1
+  ./configure
+  make
+  sudo make install
+
+OS X Installation (from ports):
+
+  sudo port install oniguruma
+
+Ubuntu Installation:
+
+  sudo aptitude install libonig-dev
+  sudo gem install oniguruma
+  
+Brightly:
+
   sudo gem install brightly --source=http://gemcutter.org
   
 == Client Usage
 
-Coming soon!
+config/environment.rb:
+
+  gem.config :lib => false, :version => '>=0.1.0', :source => "http://gemcutter.org"
+
+config/initializers/brightly.rb:
+
+  Brightly::Consumer.provider_url = "http://your-host.com"
+  Brightly::Consumer.theme = "blackboard"
+
+In your controller or model:
+
+  brighten("# Some Markdown")
+  
+Remember that you likely don't want to do this every hit to a page, markdown processing is done with RDiscount so it's fast, but code highlighting and markdown processing and the service call all adds up. Store the result, get better performance.
+
+Cheers!
 
 == And in you Markdown
 
-Here's some ruby:
-<code language="ruby">
-def candy
-  puts "is sweet!"
-end
-</code>
+  Here's some ruby:
+  <code language="ruby">
+  def candy
+    puts "is sweet!"
+  end
+  </code>
+  
+== Things of Interest
+
+Making this I stumbled upon an interesting Rack Middleware which also does syntax highlighting. If you don't need to make the call to a service, it might be of use you you. Check it out: http://coderack.org/users/wbzyl/entries/19-rackcodehighlighter
 
 == Copyright
 
