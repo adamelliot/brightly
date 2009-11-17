@@ -1,7 +1,18 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
-describe "Brightly" do
-  it "fails" do
-    fail "hey buddy, you should probably rename this file and start specing for real"
+describe Brightly::Provider do
+  it "returns html processed by markdown" do
+    post '/brighten', {:markdown => File.read(File.dirname(__FILE__) + '/data/simple.markdown'), :theme => 'blackboard'}
+    last_response.body.should == File.read(File.dirname(__FILE__) + '/data/simple.html')
+  end
+
+  it "returns html processed by markdown with ruby highlighted" do
+    post '/brighten', {:markdown => File.read(File.dirname(__FILE__) + '/data/code.markdown'), :theme => 'blackboard'}
+    last_response.body.should == File.read(File.dirname(__FILE__) + '/data/code.html')
+  end
+
+  it "returns html processed by markdown with html highlighted when there are nested <code> tags" do
+    post '/brighten', {:markdown => File.read(File.dirname(__FILE__) + '/data/nested.markdown'), :theme => 'blackboard'}
+    last_response.body.should == File.read(File.dirname(__FILE__) + '/data/nested.html')
   end
 end
