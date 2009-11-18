@@ -23,7 +23,7 @@ module Brightly
           embeds = ""
           
           while !(open = markdown.index(/<code [^>]*language=/m, 0)).nil?
-            output << markdown[0, open]
+            output << RDiscount.new(markdown[0, open]).to_html
 
             close = n = open
             begin
@@ -45,9 +45,9 @@ module Brightly
             markdown = markdown[close, markdown.length]
           end
 
-          output << markdown
+          output << RDiscount.new(markdown).to_html
 
-          embeds + RDiscount.new(output).to_html
+          embeds + output
         end
 
         def embed_code(code, type)

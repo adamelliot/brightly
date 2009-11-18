@@ -1,0 +1,16 @@
+
+<pre class="blackboard">
+<span class="Keyword">require</span> <span class="String"><span class="String">'</span>highline<span class="String">'</span></span>
+  
+namespace <span class="Constant"><span class="Constant">:</span>generate</span> <span class="Keyword">do</span>
+  desc <span class="String"><span class="String">&quot;</span>Do something with CLI<span class="String">&quot;</span></span>
+  task <span class="String"><span class="String">&quot;</span>Enter username &amp; password<span class="String">&quot;</span></span> <span class="Keyword">do</span>
+    username <span class="Keyword">=</span> <span class="Support">HighLine</span>.<span class="Entity">new</span>.<span class="Entity">ask</span>(<span class="String"><span class="String">&quot;</span>Please enter the 'username': <span class="String">&quot;</span></span>) <span class="Keyword">do </span>|<span class="Variable">q</span>|
+      q.<span class="Entity">validate</span> <span class="Keyword">=</span> <span class="String"><span class="String">/</span></span><span class="String"><span class="String"><span class="String">[</span>a-zA-z<span class="String">]</span></span><span class="String"><span class="String">[</span>a-zA-Z0-9<span class="String">]</span></span><span class="String"><span class="String">{</span>2,8<span class="String">}</span></span>$</span><span class="String"><span class="String">/</span></span>
+    <span class="Keyword">end</span>
+    password <span class="Keyword">=</span> <span class="Support">HighLine</span>.<span class="Entity">new</span>.<span class="Entity">ask</span>(<span class="String"><span class="String">&quot;</span>Please enter the 'admin' password: <span class="String">&quot;</span></span>) <span class="Keyword">do </span>|<span class="Variable">q</span>|
+      q.<span class="Entity">echo</span> <span class="Keyword">=</span> <span class="Constant">false</span>
+    <span class="Keyword">end</span>
+  <span class="Keyword">end</span>
+<span class="Keyword">end</span>
+</pre>

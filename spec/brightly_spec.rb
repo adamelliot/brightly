@@ -20,4 +20,9 @@ describe Brightly::Provider do
     post '/brighten', {:markdown => File.read(File.dirname(__FILE__) + '/data/javascript.markdown'), :theme => 'blackboard'}
     last_response.body.should == File.read(File.dirname(__FILE__) + '/data/javascript.html')
   end
+
+  it "returns html processed by markdown without double nesting parts of the highlighted code" do
+    post '/brighten', {:markdown => File.read(File.dirname(__FILE__) + '/data/double_nest.markdown'), :theme => 'blackboard'}
+    last_response.body.should == File.read(File.dirname(__FILE__) + '/data/double_nest.html')
+  end
 end
