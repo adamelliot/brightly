@@ -56,7 +56,7 @@ config.ru:
 
 config/environment.rb:
 
-  gem.config :lib => false, :version => '>=0.1.0', :source => "http://gemcutter.org"
+  gem.config :version => '>=0.1.1', :source => "http://gemcutter.org"
 
 config/initializers/brightly.rb:
 
