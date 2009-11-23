@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{brightly}
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Adam Elliot"]
-  s.date = %q{2009-11-17}
+  s.date = %q{2009-11-19}
   s.default_executable = %q{brightly}
   s.description = %q{Adds syntax highlighting and some other code stuff to Markdown}
   s.email = %q{adam@warptube.com}
@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
      "Rakefile",
      "VERSION",
      "bin/brightly",
+     "brightly.gemspec",
      "lib/brightly.rb",
      "lib/brightly/consumer.rb",
      "lib/brightly/provider/base.rb",
@@ -55,6 +56,8 @@ Gem::Specification.new do |s|
      "spec/brightly_spec.rb",
      "spec/data/code.html",
      "spec/data/code.markdown",
+     "spec/data/double_nest.html",
+     "spec/data/double_nest.markdown",
      "spec/data/javascript.html",
      "spec/data/javascript.markdown",
      "spec/data/nested.html",

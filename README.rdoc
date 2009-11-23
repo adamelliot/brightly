@@ -54,9 +54,7 @@ config.ru:
   
 == Client Usage
 
-config/environment.rb:
-
-  gem.config :version => '>=0.1.1', :source => "http://gemcutter.org"
+The simplest way to use brighten in a rails application is to create a helper method that can make the requests. You could likely create an ActiveResource model for this, but the data is hardly representative of a model, so a simple method call makes more sense.
 
 config/initializers/brightly.rb:
 

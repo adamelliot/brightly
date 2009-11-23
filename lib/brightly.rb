@@ -5,6 +5,4 @@ module Brightly
     autoload :Config, "brightly/provider/config"
     autoload :Exec, "brightly/provider/exec"
   end
-  
-  autoload :Consumer, "brightly/consumer"
 end
