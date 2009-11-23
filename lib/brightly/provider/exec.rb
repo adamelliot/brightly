@@ -40,6 +40,7 @@ module Brightly
     DocumentRoot #{File.expand_path(File.join(val, 'public'))}
 </VirtualHost>
 CONF
+            exit
           end
 
           opts.on_tail('-h', '--help', "Show this message") { puts opts ; exit }

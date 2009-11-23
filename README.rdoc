@@ -52,11 +52,11 @@ config.ru:
   end
   run Brightly::Provider::Base
   
-This config is packaged with brightly so you can easily set it up from your web server. 
+You can easily set up a brightly app for passenger with:
 
-EG In an apache virtual host:
+  brightly -p brightly
 
-
+Then just add the outputted config to your apache config.
   
 == Client Usage
 
