@@ -52,18 +52,21 @@ config.ru:
   end
   run Brightly::Provider::Base
   
+This config is packaged with brightly so you can easily set it up from your web server. 
+
+EG In an apache virtual host:
+
+
+  
 == Client Usage
 
 The simplest way to use brighten in a rails application is to create a helper method that can make the requests. You could likely create an ActiveResource model for this, but the data is hardly representative of a model, so a simple method call makes more sense.
 
-config/initializers/brightly.rb:
+A simple method can be added to your model which makes the call to Brightly:
 
-  Brightly::Consumer.provider_url = "http://your-host.com"
-  Brightly::Consumer.theme = "blackboard"
-
-In your controller or model:
-
-  brighten("# Some Markdown")
+  def brighten(markdown, theme = 'blackboard')
+    Net::HTTP.post_form(URI.parse("http://127.0.0.1:4567/brighten"), {:markdown => markdown, :theme => theme}).body
+  end
   
 Remember that you likely don't want to do this every hit to a page, markdown processing is done with RDiscount so it's fast, but code highlighting and markdown processing and the service call all adds up. Store the result, get better performance.
 

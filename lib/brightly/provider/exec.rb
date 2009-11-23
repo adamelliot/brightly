@@ -18,7 +18,8 @@ module Brightly
           opts.on('-r', '--rack-file', 'Prints the path to the builtin rack file and the contents of the file.') do
             a = File.dirname(__FILE__).split(File::SEPARATOR)
             a.slice!(-5, 5)
-            config = File.join(a.join('/'), 'config.ru')
+            a += ['lib', 'brightly', 'provider']
+            config = File.join(a.join(File::SEPARATOR), 'config.ru')
             puts "#{config}:"
             puts File.read(config)
             exit
