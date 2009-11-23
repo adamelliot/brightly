@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Adam Elliot"]
-  s.date = %q{2009-11-19}
+  s.date = %q{2009-11-23}
   s.default_executable = %q{brightly}
   s.description = %q{Adds syntax highlighting and some other code stuff to Markdown}
   s.email = %q{adam@warptube.com}
@@ -28,7 +28,6 @@ Gem::Specification.new do |s|
      "bin/brightly",
      "brightly.gemspec",
      "lib/brightly.rb",
-     "lib/brightly/consumer.rb",
      "lib/brightly/provider/base.rb",
      "lib/brightly/provider/config.rb",
      "lib/brightly/provider/exec.rb",
